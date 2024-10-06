@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformer des données à l'aide d'Azure Stream Analytics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Transformer des données à l'aide d'Azure Stream Analytics</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Qu'est-ce qu'Azure Stream Analytics ?</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-stream-analytics-1">
+                        Comprendre Azure Stream Analytics
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Azure Stream Analytics est un service de traitement des données en temps réel. Il permet d'ingérer, de transformer et d'analyser des flux de données provenant de sources comme Azure Event Hubs, IoT Hubs et Blob Storage. Il est conçu pour offrir des solutions d'analyse de flux en temps réel, efficaces et évolutives.
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-stream-analytics-2">
+                        Pourquoi utiliser Azure Stream Analytics ?
+                    </label>
+                    <p>
+                        Azure Stream Analytics est utilisé pour créer des pipelines de traitement de flux de données en temps réel, ce qui permet de réagir rapidement à des événements et de déclencher des actions automatisées ou des analyses en continu. Il s'intègre parfaitement à d'autres services Azure comme Power BI, Azure SQL, et Azure Data Lake pour la visualisation et le stockage.
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Fonctionnalités clés d'Azure Stream Analytics</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-stream-analytics-3">
+                        Filtrer et transformer des données en temps réel
+                    </label>
+                    <p>Azure Stream Analytics permet de filtrer des données entrantes en utilisant des requêtes semblables à SQL. Il offre la possibilité de manipuler, nettoyer et transformer des données avant de les envoyer vers des solutions d'analyse ou de stockage.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-stream-analytics-4">
+                        Agrégations temporelles
+                    </label>
+                    <p>Grâce aux fenêtres de temps (fenêtrage), Azure Stream Analytics permet de réaliser des agrégations sur des flux de données sur une durée définie, comme calculer des moyennes, sommes, ou comptages sur une période de temps.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="task-section">
+            <h3>Atelier Pratique : Transformer des données avec Azure Stream Analytics</h3>
+            <p>Dans cet atelier, vous allez apprendre à manipuler et transformer des flux de données en utilisant des requêtes dans Azure Stream Analytics. Vous allez explorer comment filtrer des données, appliquer des transformations et générer des résultats agrégés en temps réel.</p>
+
+            <ul>
+                <!-- Première tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-stream-analytics-transform-1">
+                        Lire et filtrer des données avec Azure Stream Analytics
+                    </label>
+                    <p>Utilisez une requête de Stream Analytics pour lire des données à partir d'Event Hubs et appliquer un filtre pour sélectionner des événements spécifiques.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Accédez à votre espace de travail <strong>Azure Stream Analytics</strong> et créez une nouvelle tâche.</li>
+                            <li>Ajoutez une source de données à partir d'<strong>Azure Event Hubs</strong>.</li>
+                            <li>Appliquez un filtre sur les données en utilisant une requête :
+                                <pre>
+SELECT *
+FROM InputStream
+WHERE Temperature > 30;
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Deuxième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-stream-analytics-transform-2">
+                        Appliquer des agrégations et des fenêtres temporelles
+                    </label>
+                    <p>Utilisez des fenêtres de temps pour agréger des événements et calculer des statistiques comme des moyennes ou des sommes sur une période.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Créez une agrégation qui calcule la température moyenne toutes les 10 secondes :
+                                <pre>
+SELECT AVG(Temperature) AS AvgTemperature, TumblingWindow(seconds, 10)
+FROM InputStream;
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Troisième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-stream-analytics-transform-3">
+                        Gérer les données en double et manquantes
+                    </label>
+                    <p>Apprenez à utiliser la fonctionnalité "Exactement une remise" pour éliminer les doublons et gérer les données manquantes dans les flux.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Activez la remise unique pour éviter la duplication des événements dans vos flux.</li>
+                            <li>Ajoutez des conditions pour gérer les données manquantes :
+                                <pre>
+SELECT ISNULL(Temperature, 0) AS Temperature
+FROM InputStream;
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

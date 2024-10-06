@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implémenter une stratégie de partition pour Azure Synapse Analytics - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="checklist.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Implémenter une stratégie de partition pour Azure Synapse Analytics</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Principes de Partitionnement dans Azure Synapse Analytics</h3>
+            <p>Le partitionnement dans Azure Synapse Analytics consiste à diviser des données volumineuses en segments plus petits appelés partitions, afin d'améliorer les performances de requêtes et l'évolutivité des bases de données analytiques.</p>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-synapse-1">
+                        Comprendre les avantages du partitionnement
+                    </label>
+                    <p>Le partitionnement permet de réduire les temps de réponse des requêtes en accédant à un sous-ensemble de données plutôt qu'à une table entière.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-synapse-2">
+                        Identifier les critères de partitionnement
+                    </label>
+                    <p>Les critères typiques incluent les dates, les régions géographiques, ou d'autres colonnes clés des tables de données. Ces colonnes sont souvent utilisées dans les filtres de requêtes.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Tâche Pratique : Implémenter une Stratégie de Partitionnement pour Azure Synapse</h2>
+            <p>Dans cette tâche pratique, vous allez créer une table partitionnée, insérer des données, et optimiser les requêtes en fonction des partitions. L'objectif est de configurer un modèle performant dans Azure Synapse Analytics.</p>
+
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-synapse-1">
+                        Créer une table partitionnée
+                    </label>
+                    <p>Créez une table partitionnée dans Azure Synapse en utilisant la colonne <strong>Date</strong> pour partitionner les données. Voici un exemple de requête SQL :</p>
+                    <pre>
+CREATE TABLE Transactions
+(
+    DateTrans DATE,
+    ID_Produit INT,
+    Montant DECIMAL(18, 2),
+    Région VARCHAR(50)
+)
+WITH (PARTITION (DateTrans RANGE RIGHT FOR VALUES ('2021-01-01', '2022-01-01')));
+                    </pre>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-synapse-2">
+                        Insérer des données dans la table partitionnée
+                    </label>
+                    <p>Insérez des données dans les partitions en fonction des dates. Utilisez des INSERT INTO avec des lots de données représentatifs.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-synapse-3">
+                        Optimiser les requêtes analytiques
+                    </label>
+                    <p>Exécutez des requêtes en filtrant par partitions. Par exemple, effectuez des recherches sur une plage de dates spécifique pour optimiser les temps de réponse.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-synapse-4">
+                        Surveiller et ajuster les performances
+                    </label>
+                    <p>Utilisez Azure Monitor pour surveiller les performances des partitions et ajustez la stratégie si nécessaire (par exemple, augmentez le nombre de partitions).</p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

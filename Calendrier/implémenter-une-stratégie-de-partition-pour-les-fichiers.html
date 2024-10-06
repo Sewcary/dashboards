@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implémenter une stratégie de partition pour les fichiers - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Implémenter une stratégie de partition pour les fichiers</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Principes de Partitionnement</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-partition-1">
+                        Comprendre les raisons du partitionnement
+                    </label>
+                    <p>Le partitionnement des données permet d'améliorer la performance des requêtes en divisant les données en segments plus petits, facilitant ainsi leur gestion et leur accès.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-partition-2">
+                        Méthodes de Partitionnement
+                    </label>
+                    <p>Il existe différentes méthodes de partitionnement : partitionnement temporel, par clé, ou par taille. Le choix dépend des types de données et des besoins analytiques.</p>
+                </li>
+            </ul>
+
+            <h3>Avantages et Inconvénients</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-partition-1">
+                        Avantages du Partitionnement
+                    </label>
+                    <p>Le partitionnement améliore la scalabilité et la gestion des données volumineuses en réduisant les temps de traitement et en facilitant la maintenance.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-partition-2">
+                        Inconvénients du Partitionnement
+                    </label>
+                    <p>Cependant, il peut ajouter de la complexité, nécessitant une gestion accrue des métadonnées et des partitions elles-mêmes.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Aspects Pratiques</h2>
+            <h3>Outils et Technologies</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="tool-partition-1">
+                        Utiliser Azure Data Factory pour le Partitionnement
+                    </label>
+                    <p>Configurer des pipelines d'ETL dans Azure Data Factory pour inclure le partitionnement et améliorer l'efficacité de la gestion des données.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="tool-partition-2">
+                        Gérer les données dans Azure Data Lake Storage
+                    </label>
+                    <p>Stocker des fichiers partitionnés en fonction d'une hiérarchie logique (par exemple, année/mois/jour) dans Azure Data Lake Storage.</p>
+                </li>
+            </ul>
+
+            <h3>Configuration des Partitions</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="config-partition-1">
+                        Définir des schémas de partitionnement
+                    </label>
+                    <p>Lors de la création des tables, définir des schémas de partitionnement en tenant compte des besoins futurs en matière de gestion des données.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="config-partition-2">
+                        Choisir la taille optimale des partitions
+                    </label>
+                    <p>Évaluer la taille des partitions pour assurer un bon équilibre entre performance et gestion des ressources.</p>
+                </li>
+            </ul>
+
+            <h3>Surveillance et Maintenance</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="monitor-partition-1">
+                        Mettre en place des outils de surveillance
+                    </label>
+                    <p>Mettre en place des outils de surveillance pour évaluer l'efficacité des partitions, via Azure Monitor ou des solutions similaires.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="monitor-partition-2">
+                        Ajuster les partitions selon les besoins
+                    </label>
+                    <p>Ajuster dynamiquement les partitions en fonction des changements de volumes de données ou des besoins en performance.</p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+
+    <!-- Inclusion du fichier JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

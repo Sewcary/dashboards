@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implémenter une stratégie de partition pour les charges de travail de streaming - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Implémenter une stratégie de partition pour les charges de travail de streaming</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Principes du Partitionnement dans les Charges de Travail de Streaming</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-streaming-partition-1">
+                        Comprendre l'importance du partitionnement pour les flux de streaming
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Le partitionnement dans les charges de travail de streaming permet de distribuer les flux de données entre plusieurs partitions pour améliorer le traitement parallèle et la scalabilité. Les partitions permettent de gérer de gros volumes de données en temps réel.
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-streaming-partition-2">
+                        Critères de partitionnement dans les systèmes de streaming
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les critères de partitionnement pour les charges de travail de streaming incluent :
+                        <ul>
+                            <li><strong>Horodatages :</strong> Partitionner par plage temporelle permet de traiter les données en fonction du moment où elles sont générées.</li>
+                            <li><strong>ID utilisateur :</strong> Utiliser un identifiant unique pour les utilisateurs ou sessions, assurant que les données associées à chaque utilisateur sont regroupées dans une partition spécifique.</li>
+                            <li><strong>Catégories de données :</strong> Partitionner en fonction du type de données (ex : vidéos, transactions, logs) pour améliorer les performances du traitement ciblé.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Avantages et Inconvénients du Partitionnement dans le Streaming</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-streaming-partition-1">
+                        Avantages du Partitionnement pour le Streaming
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les avantages incluent :
+                        <ul>
+                            <li><strong>Scalabilité accrue :</strong> Le partitionnement permet de traiter de grands volumes de données en parallèle, répartissant la charge sur plusieurs nœuds de traitement.</li>
+                            <li><strong>Performance améliorée :</strong> Les données sont mieux organisées, permettant des temps de réponse plus rapides et un traitement plus fluide des flux continus.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-streaming-partition-2">
+                        Inconvénients du Partitionnement pour le Streaming
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les inconvénients incluent :
+                        <ul>
+                            <li><strong>Complexité accrue :</strong> Gérer des partitions en temps réel nécessite des mécanismes de surveillance robustes pour identifier les déséquilibres de charge entre partitions.</li>
+                            <li><strong>Coordination entre partitions :</strong> Des mécanismes supplémentaires sont souvent nécessaires pour gérer les dépendances entre partitions dans certains flux de travail.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Atelier Pratique : Implémentation d'une Stratégie de Partitionnement pour le Streaming</h2>
+            <p>Dans cet atelier, vous allez mettre en place une stratégie de partitionnement pour un flux de données en streaming dans Azure Event Hubs et Apache Kafka. Vous apprendrez à configurer des partitions pour améliorer les performances du traitement de flux de données en temps réel.</p>
+
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-streaming-partition-1">
+                        Créer des partitions dans Azure Event Hubs
+                    </label>
+                    <p>
+                        Créez des partitions dans Event Hubs pour répartir les flux de données en fonction des identifiants utilisateurs ou des horodatages. Cela permet de distribuer la charge entre différents consommateurs.
+                        <ul>
+                            <li>Utiliser la colonne <strong>ID utilisateur</strong> ou <strong>Date</strong> comme clé de partitionnement pour chaque message envoyé à Event Hubs.</li>
+                            <li>Configurer plusieurs partitions pour assurer une distribution équilibrée des flux.</li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-streaming-partition-2">
+                        Configurer des partitions dans Apache Kafka
+                    </label>
+                    <p>
+                        Partitionnez les flux de données dans Apache Kafka en fonction de critères comme les catégories de produits ou d'utilisateurs. Cela permet d'améliorer le traitement parallèle et la scalabilité.
+                        <ul>
+                            <li>Créer des partitions Kafka basées sur une clé comme l'identifiant de session ou la région géographique.</li>
+                            <li>Configurer plusieurs consommateurs pour traiter les messages provenant de différentes partitions en parallèle.</li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-streaming-partition-3">
+                        Surveiller et ajuster les partitions dans Azure Monitor
+                    </label>
+                    <p>
+                        Utilisez <strong>Azure Monitor</strong> pour surveiller l'utilisation des partitions en streaming et ajuster la configuration pour équilibrer la charge :
+                        <ul>
+                            <li>Configurer des alertes pour surveiller les partitions surchargées ou sous-utilisées.</li>
+                            <li>Analyser les métriques de performances et ajuster la configuration des partitions pour améliorer l'efficacité.</li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-streaming-partition-4">
+                        Tester les performances avec des flux partitionnés
+                    </label>
+                    <p>
+                        Testez les performances des flux de données en comparant un flux sans partitionnement à un flux partitionné :
+                        <ul>
+                            <li>Mesurer les temps de traitement avec et sans partitionnement pour des volumes similaires de données.</li>
+                            <li>Analyser les résultats pour évaluer les gains de performance liés au partitionnement.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

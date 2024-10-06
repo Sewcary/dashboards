@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer et exécuter des requêtes avec SQL Serverless et des Clusters Spark</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Créer et exécuter des requêtes en utilisant SQL Serverless et des Clusters Spark</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>SQL Serverless dans Azure Synapse Analytics</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-sql-serverless-1">
+                        Comprendre SQL Serverless
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> SQL Serverless permet d'exécuter des requêtes SQL directement sur des fichiers dans le Data Lake sans avoir besoin de gérer une infrastructure dédiée. Il offre une solution élastique qui s'ajuste automatiquement en fonction des besoins en calcul.
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-sql-serverless-2">
+                        Avantages de SQL Serverless
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les avantages incluent :
+                        <ul>
+                            <li><strong>Pas de gestion d'infrastructure :</strong> Il n'est pas nécessaire de configurer ou de maintenir des serveurs SQL.</li>
+                            <li><strong>Élasticité :</strong> Les ressources de calcul augmentent ou diminuent selon les requêtes, réduisant ainsi les coûts.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Clusters Spark dans Azure Synapse Analytics</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-cluster-1">
+                        Comprendre les Clusters Spark
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les Clusters Spark dans Azure Synapse permettent de traiter de grandes quantités de données via des calculs distribués. Spark est un moteur de traitement de données en mémoire qui est utilisé pour l'analyse de Big Data.
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-cluster-2">
+                        Avantages des Clusters Spark
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les avantages incluent :
+                        <ul>
+                            <li><strong>Traitement en mémoire :</strong> Spark traite les données en mémoire, ce qui accélère les analyses complexes sur de grands ensembles de données.</li>
+                            <li><strong>Scalabilité :</strong> Spark peut s'étendre facilement pour traiter des pétaoctets de données en parallèle sur de multiples nœuds.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Atelier Pratique : Créer et exécuter des requêtes avec SQL Serverless et Spark</h2>
+            <p>Dans cet atelier, vous allez apprendre à exécuter des requêtes analytiques en utilisant à la fois SQL Serverless et des Clusters Spark dans Azure Synapse Analytics. Vous allez manipuler des fichiers CSV et Parquet dans Azure Data Lake, puis exécuter des analyses via ces deux solutions.</p>
+
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-sql-serverless-1">
+                        Créer et exécuter une requête avec SQL Serverless sur un fichier CSV
+                    </label>
+                    <p>
+                        Utilisez SQL Serverless pour interroger directement un fichier CSV dans Azure Data Lake. Cela vous permet d'effectuer des analyses sans avoir à ingérer les données dans une base de données dédiée.
+                        <ul>
+                            <li>Accédez à votre espace de travail Azure Synapse Analytics.</li>
+                            <li>Créez une requête SQL pour interroger le fichier CSV stocké dans le Data Lake. Exemple de requête :
+                                <pre>
+SELECT TOP 100 *
+FROM OPENROWSET(
+    BULK 'https://mon-datalake.dfs.core.windows.net/fichiers/ventes.csv',
+    FORMAT='CSV', 
+    PARSER_VERSION='2.0'
+) AS [result];
+                                </pre>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-spark-cluster-1">
+                        Créer et exécuter une requête avec Spark sur un fichier Parquet
+                    </label>
+                    <p>
+                        Utilisez Spark pour traiter un fichier Parquet dans Azure Synapse. Parquet est un format optimisé pour le stockage de grands ensembles de données en colonne, ce qui permet des analyses rapides avec Spark.
+                        <ul>
+                            <li>Créez un notebook Spark dans Azure Synapse.</li>
+                            <li>Utilisez le code suivant pour lire un fichier Parquet et effectuer des analyses simples :
+                                <pre>
+df = spark.read.parquet("abfss://mon-datalake@moncompte.dfs.core.windows.net/fichiers/ventes.parquet")
+df.createOrReplaceTempView("VentesParquet")
+spark.sql("SELECT COUNT(*) FROM VentesParquet WHERE Montant_Vente > 100").show()
+                                </pre>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-performance-1">
+                        Comparer les performances entre SQL Serverless et Spark
+                    </label>
+                    <p>
+                        Comparez les temps de traitement entre une requête SQL Serverless et une requête Spark sur des ensembles de données similaires :
+                        <ul>
+                            <li>Exécutez une requête sur un fichier CSV avec SQL Serverless.</li>
+                            <li>Exécutez une requête similaire sur un fichier Parquet avec Spark.</li>
+                            <li>Mesurez les temps de réponse et analysez les différences.</li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-scaling-1">
+                        Explorer la scalabilité avec Spark
+                    </label>
+                    <p>
+                        Testez la scalabilité de Spark en augmentant le nombre de partitions et de nœuds pour traiter de plus grands volumes de données :
+                        <ul>
+                            <li>Configurez le cluster Spark pour utiliser plus de nœuds et partitions.</li>
+                            <li>Exécutez des requêtes sur un ensemble de données volumineux et mesurez l'impact sur les performances.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intégrer et Transformer des Données avec Azure Data Factory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Intégrer et Transformer des Données avec Azure Data Factory</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Concepts Clés</h2>
+            <h3>Qu'est-ce qu'Azure Data Factory ?</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adf-1">
+                        Comprendre Azure Data Factory
+                    </label>
+                    <p><strong>Azure Data Factory (ADF)</strong> est un outil d'intégration de données qui vous permet de créer des pipelines pour déplacer et transformer des données de manière simple et automatisée. ADF vous aide à connecter différentes sources de données, à appliquer des transformations, et à charger les résultats dans des bases de données cloud.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adf-2">
+                        Pourquoi utiliser Azure Data Factory ?
+                    </label>
+                    <p>ADF est particulièrement utile pour automatiser les tâches répétitives et pour traiter des volumes importants de données provenant de diverses sources. Il offre une approche visuelle et intuitive pour créer des pipelines, tout en s'intégrant facilement avec les autres services Azure.</p>
+                </li>
+            </ul>
+
+            <h3>Principaux Cas d'Utilisation</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adf-3">
+                        Chargement incrémentiel de données
+                    </label>
+                    <p>ADF permet de ne charger que les données nouvelles ou modifiées, en utilisant des mécanismes comme le **Change Data Capture (CDC)** ou des horodatages, ce qui optimise le temps de traitement.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adf-4">
+                        Transformation des données avec des flux de données
+                    </label>
+                    <p>Grâce aux **Mapping Data Flows**, vous pouvez appliquer des transformations complexes comme les jointures, les agrégations, et les filtres directement dans le pipeline sans écrire de code.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adf-5">
+                        Intégration de multiples sources de données
+                    </label>
+                    <p>ADF supporte de nombreux connecteurs, permettant ainsi d'intégrer des données issues de fichiers CSV, bases de données, et services cloud comme AWS ou d'autres plateformes SaaS.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="task-section">
+            <h3>Atelier Pratique : Créer et Automatiser un Pipeline avec Azure Data Factory</h3>
+            <p>Dans cet atelier, vous allez apprendre à créer un pipeline dans Azure Data Factory. Vous allez suivre un cheminement simple : d'abord connecter des données, puis appliquer des transformations, et enfin automatiser le pipeline. Chaque étape vous aidera à comprendre comment ADF peut être utilisé pour gérer et transformer vos données de façon efficace.</p>
+
+            <h4>Étape 1 : Créer un pipeline dans Azure Data Factory</h4>
+            <p><strong>Objectif :</strong> Vous allez créer un pipeline qui déplace des données d'une source (par exemple, Azure Data Lake Storage) vers une destination (comme une base de données Azure SQL). Suivez attentivement chaque étape pour bien comprendre comment structurer un pipeline.</p>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-pipeline-1">
+                        Accédez à votre espace de travail Azure Data Factory
+                    </label>
+                    <p>Commencez par vous connecter à Azure Data Factory dans le **Portail Azure**. Cela vous donnera accès à l'interface visuelle où vous pouvez créer et gérer des pipelines.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-pipeline-2">
+                        Créez un nouveau pipeline
+                    </label>
+                    <p>Dans la section **Pipelines**, cliquez sur <strong>+ Nouveau Pipeline</strong>. Cela vous permettra de définir un pipeline vide dans lequel vous allez ajouter des activités pour déplacer et transformer des données.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-pipeline-3">
+                        Ajouter une activité de copie de données
+                    </label>
+                    <p>Ajoutez une activité <strong>Copy Data</strong> au pipeline. Cette activité vous permettra de déplacer des données d'une source à une destination. Configurez les propriétés pour définir la source (comme Azure Data Lake Storage) et la destination (par exemple, une base de données SQL).</p>
+                </li>
+            </ul>
+
+            <h4>Étape 2 : Appliquer des transformations avec un flux de données</h4>
+            <p><strong>Objectif :</strong> Apprendre à utiliser les **Mapping Data Flows** pour transformer les données dans Azure Data Factory sans avoir à écrire de code. Cette étape vous montrera comment nettoyer ou enrichir vos données avant de les charger dans leur destination finale.</p>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-transform-1">
+                        Ajouter un flux de données
+                    </label>
+                    <p>Dans le pipeline que vous avez créé, ajoutez une nouvelle activité de <strong>Data Flow</strong>. Cela vous permettra d'appliquer des transformations sur vos données.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-transform-2">
+                        Créez et configurez un flux de données
+                    </label>
+                    <p>Définissez la source des données (comme un fichier CSV dans Azure Data Lake). Ensuite, dans le flux de données, appliquez des transformations telles que :</p>
+                    <ul>
+                        <li>**Filtrer** : Supprimez les lignes où la colonne <strong>montant_vente</strong> est inférieure à 100.</li>
+                        <li>**Ajouter une colonne calculée** : Ajoutez une nouvelle colonne pour calculer la TVA sur les montants de vente.</li>
+                    </ul>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-transform-3">
+                        Testez et validez le flux de données
+                    </label>
+                    <p>Testez le flux de données pour vous assurer que toutes les transformations ont été appliquées correctement. Si tout semble bon, enregistrez les modifications et passez à l'étape suivante.</p>
+                </li>
+            </ul>
+
+            <h4>Étape 3 : Automatiser le pipeline</h4>
+            <p><strong>Objectif :</strong> Planifier l'exécution du pipeline afin qu'il soit exécuté automatiquement à des intervalles réguliers ou en réponse à un événement. Cette étape vous aidera à automatiser vos tâches de transformation de données.</p>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-automate-1">
+                        Accédez à l'onglet "Triggers"
+                    </label>
+                    <p>Dans votre pipeline, accédez à la section **Triggers** pour configurer l'automatisation. Vous pouvez choisir de déclencher le pipeline manuellement ou automatiquement à des intervalles définis.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adf-automate-2">
+                        Planifiez l'exécution du pipeline
+                    </label>
+                    <p>Ajoutez un nouveau déclencheur en cliquant sur <strong>+ Nouveau</strong>. Planifiez le pipeline pour qu'il s'exécute à une heure définie, par exemple tous les jours à minuit, ou en fonction d'un événement comme l'ajout de nouveaux fichiers dans Azure Data Lake

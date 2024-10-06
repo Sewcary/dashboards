@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implémenter une stratégie de partition pour les fichiers - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Implémenter une stratégie de partition pour les fichiers</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Principes de Partitionnement</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-partition-1">
+                        Comprendre les raisons du partitionnement
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Le partitionnement est une méthode utilisée pour diviser de grands ensembles de données en segments plus petits appelés partitions. Cela permet d'accélérer les temps de réponse des requêtes et de faciliter la gestion des données.
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-partition-2">
+                        Méthodes de Partitionnement
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les méthodes courantes de partitionnement incluent :
+                        <ul>
+                            <li><strong>Partitionnement temporel :</strong> Utilisé pour des données sensibles au temps, comme les ventes quotidiennes.</li>
+                            <li><strong>Partitionnement basé sur des clés :</strong> Basé sur une colonne clé, par exemple un identifiant client ou un identifiant produit.</li>
+                            <li><strong>Partitionnement par taille :</strong> Découpe les données en segments de taille définie pour éviter de traiter des volumes excessifs.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Avantages et Inconvénients</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-partition-1">
+                        Avantages du Partitionnement
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les principaux avantages du partitionnement sont :
+                        <ul>
+                            <li><strong>Amélioration des performances :</strong> Les requêtes scannent uniquement les partitions nécessaires, réduisant le temps de traitement.</li>
+                            <li><strong>Scalabilité :</strong> Il permet une meilleure gestion des grandes quantités de données, facilitant l’évolutivité de l’architecture.</li>
+                            <li><strong>Gestion facilitée :</strong> Les partitions peuvent être gérées individuellement, ce qui simplifie les tâches de maintenance comme l'archivage ou la suppression de données obsolètes.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-partition-2">
+                        Inconvénients du Partitionnement
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les inconvénients incluent :
+                        <ul>
+                            <li><strong>Complexité accrue :</strong> Le partitionnement introduit une couche de complexité dans la gestion des métadonnées et des partitions elles-mêmes.</li>
+                            <li><strong>Surcoûts de maintenance :</strong> Plus de partitions signifie plus de tâches de gestion, ce qui peut entraîner des coûts supplémentaires en termes de gestion.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Atelier Pratique : Implémentation complète d'une stratégie de partitionnement</h2>
+            <p>Dans cet atelier, vous allez mettre en place une stratégie de partitionnement complète en appliquant tous les concepts évoqués. Cette stratégie inclut la création d'une table partitionnée, la gestion de fichiers dans Azure Data Lake, et la mise en place d'outils de surveillance.</p>
+
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-partition-1">
+                        Créer une table partitionnée dans Azure Synapse
+                    </label>
+                    <p>
+                        Vous allez créer une table partitionnée dans Azure Synapse, en utilisant une colonne stratégique comme la <strong>Date</strong> pour partitionner les données. Cela permettra de mieux gérer les volumes massifs de données.
+                        <ul>
+                            <li>Choisir une colonne de partition pertinente (ex : Date).</li>
+                            <li>Utiliser la syntaxe SQL pour définir les partitions. Exemple :
+                                <pre>
+CREATE TABLE Ventes
+(
+    Date DATE,
+    ID_Produit INT,
+    ID_Client INT,
+    Quantité_Vendue INT,
+    Total_Revenu DECIMAL(18, 2)
+)
+WITH (DISTRIBUTION = HASH(ID_Client), PARTITION (Date RANGE RIGHT FOR VALUES ('2020-01-01', '2021-01-01', '2022-01-01')));
+                                </pre>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-partition-2">
+                        Stocker et organiser des fichiers dans Azure Data Lake
+                    </label>
+                    <p>Utilisez Azure Data Lake Storage pour organiser vos fichiers selon une hiérarchie logique. Cela améliore la gestion et permet d'extraire plus facilement les données. Par exemple :
+                        <ul>
+                            <li>Créer des dossiers structurés par années, mois, ou tout autre critère pertinent.</li>
+                            <li>Utiliser Azure Data Factory pour gérer automatiquement le flux de données vers ces dossiers.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-partition-3">
+                        Mettre en place des outils de surveillance des partitions
+                    </label>
+                    <p>
+                        Utilisez des outils de surveillance pour suivre l'utilisation des partitions et optimiser les performances :
+                        <ul>
+                            <li>Configurer Azure Monitor pour observer les performances des partitions.</li>
+                            <li>Mettre en place des alertes pour surveiller les partitions surchargées.</li>
+                            <li>Ajuster la stratégie de partitionnement en fonction des rapports de performance.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

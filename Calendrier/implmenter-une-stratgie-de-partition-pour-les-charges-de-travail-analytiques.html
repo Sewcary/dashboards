@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implémenter une stratégie de partition pour les charges de travail analytiques - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Implémenter une stratégie de partition pour les charges de travail analytiques</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Principes du Partitionnement dans les Charges de Travail Analytiques</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-analytic-partition-1">
+                        Comprendre les raisons d'utiliser le partitionnement pour les charges de travail analytiques
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Dans les charges de travail analytiques, le partitionnement des données permet d'améliorer les performances des requêtes analytiques sur de grands ensembles de données. Il réduit le volume de données scanné par chaque requête, ce qui optimise les temps de réponse.
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-analytic-partition-2">
+                        Méthodes de partitionnement dans un contexte analytique
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les méthodes de partitionnement les plus utilisées pour les charges analytiques incluent :
+                        <ul>
+                            <li><strong>Partitionnement temporel :</strong> Utilisé lorsque les données sont réparties par période (jours, mois, années) pour les analyses chronologiques.</li>
+                            <li><strong>Partitionnement par catégorie :</strong> Basé sur des colonnes clés comme les régions, les départements, ou les types de produits pour segmenter les données.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Avantages et Inconvénients du Partitionnement Analytiques</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-analytic-partition-1">
+                        Avantages du Partitionnement pour les Charges Analytiques
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les avantages du partitionnement dans les charges de travail analytiques sont :
+                        <ul>
+                            <li><strong>Réduction du temps de réponse :</strong> Les requêtes ne scannent que les partitions pertinentes, ce qui réduit considérablement le temps de traitement.</li>
+                            <li><strong>Optimisation des ressources :</strong> Les ressources de calcul sont utilisées de manière plus efficace, car moins de données sont chargées en mémoire.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="advantage-analytic-partition-2">
+                        Inconvénients du Partitionnement dans un Contexte Analytique
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Les inconvénients incluent :
+                        <ul>
+                            <li><strong>Complexité accrue :</strong> La gestion des partitions nécessite des ajustements réguliers pour s'assurer que les partitions restent équilibrées en taille.</li>
+                            <li><strong>Surveillance nécessaire :</strong> Les charges de travail doivent être surveillées pour identifier les partitions sous-utilisées ou surchargées.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Atelier Pratique : Implémentation d'une Stratégie de Partitionnement pour les Charges de Travail Analytiques</h2>
+            <p>Dans cet atelier, vous allez apprendre à mettre en place une stratégie de partitionnement pour optimiser les performances analytiques dans Azure Synapse Analytics. Vous allez implémenter des partitions basées sur des colonnes stratégiques comme la <strong>Date</strong> ou des <strong>Catégories</strong> pertinentes.</p>
+
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-analytic-partition-1">
+                        Créer une table partitionnée basée sur des données temporelles
+                    </label>
+                    <p>
+                        Utilisez une colonne <strong>Date</strong> pour partitionner une table dans Azure Synapse. Cela permet de réduire les temps de traitement des analyses chronologiques.
+                        <ul>
+                            <li>Choisir une colonne temporelle comme clé de partitionnement.</li>
+                            <li>Utiliser une requête SQL pour créer la table avec les partitions appropriées. Exemple :
+                                <pre>
+CREATE TABLE LogsAnalyse
+(
+    Date DATE,
+    ID_Client INT,
+    Action VARCHAR(255),
+    DétailAction TEXT
+)
+WITH (DISTRIBUTION = HASH(ID_Client), PARTITION (Date RANGE RIGHT FOR VALUES ('2021-01-01', '2022-01-01', '2023-01-01')));
+                                </pre>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-analytic-partition-2">
+                        Configurer des partitions par catégorie
+                    </label>
+                    <p>
+                        Partitionnez les données analytiques en fonction de catégories spécifiques, comme des <strong>régions</strong> ou des <strong>produits</strong>. Cela vous permet d'effectuer des analyses ciblées en ne scannant que les partitions pertinentes.
+                        <ul>
+                            <li>Créer des partitions en fonction des catégories principales utilisées dans vos requêtes analytiques.</li>
+                            <li>Utiliser SQL pour définir les partitions. Exemple :
+                                <pre>
+CREATE TABLE VentesAnalyse
+(
+    Région VARCHAR(50),
+    ID_Produit INT,
+    Quantité_Vendue INT,
+    Total_Revenu DECIMAL(18, 2)
+)
+WITH (PARTITION (Région HASH));
+                                </pre>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-analytic-partition-3">
+                        Surveiller et optimiser les partitions
+                    </label>
+                    <p>
+                        Utilisez <strong>Azure Monitor</strong> pour surveiller les performances des partitions analytiques et ajuster la stratégie de partitionnement en fonction des besoins réels. Cela inclut :
+                        <ul>
+                            <li>Suivi des requêtes exécutées sur chaque partition.</li>
+                            <li>Ajustement des partitions surchargées ou sous-utilisées pour équilibrer la charge de travail.</li>
+                            <li>Mise en place d'alertes pour surveiller les performances des partitions.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

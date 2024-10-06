@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifier quand le partitionnement est nécessaire dans Azure Data Lake Storage Gen2</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="checklist.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Identifier quand le partitionnement est nécessaire dans Azure Data Lake Storage Gen2</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Pourquoi utiliser le partitionnement dans Azure Data Lake Storage Gen2 ?</h3>
+            <p>
+                Azure Data Lake Storage Gen2 permet de stocker et de traiter de grandes quantités de données. Le partitionnement des données consiste à organiser ces données en segments logiques, facilitant ainsi les requêtes et améliorant la performance du traitement.
+            </p>
+
+            <!-- Définition 1: Avantages du partitionnement -->
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adls-1">
+                        Comprendre les avantages du partitionnement
+                    </label>
+                    <p>
+                        <strong>Avantages du partitionnement :</strong> Le partitionnement est particulièrement utile pour les grands volumes de données dans Azure Data Lake. Il permet de :
+                        <ul>
+                            <li>Réduire le temps de traitement en scannant uniquement une partie des données.</li>
+                            <li>Améliorer les performances des requêtes en réduisant la latence.</li>
+                            <li>Simplifier la gestion des données en organisant les fichiers de manière logique.</li>
+                        </ul>
+                    </p>
+                </li>
+
+                <!-- Définition 2: Critères de partitionnement -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adls-2">
+                        Identifier les scénarios nécessitant un partitionnement
+                    </label>
+                    <p>
+                        <strong>Critères de partitionnement :</strong> Les colonnes utilisées fréquemment dans les filtres de requêtes sont idéales pour le partitionnement. Par exemple :
+                        <ul>
+                            <li><strong>Date :</strong> Partitionner par année, mois ou jour permet d'améliorer les performances lors de l'analyse de données chronologiques.</li>
+                            <li><strong>Régions géographiques :</strong> Pour les données géolocalisées, un partitionnement par région ou pays permet un traitement plus rapide.</li>
+                            <li><strong>Types de produits :</strong> Pour des analyses sectorielles, partitionner selon des catégories de produits permet de réduire les données scannées.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Tâche pratique pour implémenter le partitionnement -->
+        <section>
+            <h2>Tâche Pratique : Mise en œuvre du partitionnement dans Azure Data Lake Storage Gen2</h2>
+            <p>Dans cette tâche pratique, vous allez apprendre à organiser vos données en implémentant une stratégie de partitionnement basée sur les besoins de traitement. Cette approche améliore l'efficacité et optimise les requêtes analytiques dans Azure Data Lake Storage Gen2.</p>
+
+            <!-- Étapes de la tâche pratique -->
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adls-1">
+                        Créer une hiérarchie de dossiers partitionnés
+                    </label>
+                    <p>Organisez vos données en créant des sous-dossiers basés sur des critères pertinents (ex : années, régions). Par exemple, les dossiers peuvent être nommés selon l'année de collecte des données (<strong>year=2021</strong>, <strong>year=2022</strong>), ce qui permet un partitionnement logique.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adls-2">
+                        Charger les données partitionnées dans Data Lake
+                    </label>
+                    <p>Chargez les données dans les dossiers correspondants. Cela permet de filtrer rapidement les données lors des requêtes, car les données sont organisées en fonction de critères spécifiques comme les dates ou les régions.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adls-3">
+                        Exécuter des requêtes filtrées pour améliorer les performances
+                    </label>
+                    <p>Exécutez des requêtes analytiques filtrées sur les partitions créées pour observer des gains de performances significatifs. Par exemple, une requête sur les données de <strong>year=2022</strong> ne scannera que cette partition.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-adls-4">
+                        Surveiller les performances des partitions
+                    </label>
+                    <p>Utilisez des outils comme <strong>Azure Monitor</strong> pour surveiller l'utilisation des partitions. Ajustez la stratégie de partitionnement en fonction des volumes de données ou des performances observées.</p>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

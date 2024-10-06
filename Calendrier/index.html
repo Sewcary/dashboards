@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord DP-203</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <h1>Tableau de Bord DP-203</h1>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="overview">Vue d'ensemble</button>
+            <button class="tab-button" data-tab="progress">Progression</button>
+            <button class="tab-button" data-tab="tasks">Tâches Quotidiennes</button>
+        </div>
+
+        <div class="tab-content active" id="overview">
+            <h2>Vue globale du programme</h2>
+            <p>Cliquez sur une section pour voir la liste des concepts à maîtriser.</p>
+            <ul>
+                <li onclick="showDetails('data-storage')">Concevoir et implémenter le stockage des données (15-20%)</li>
+                <li onclick="showDetails('data-processing')">Développer le traitement des données (40-45%)</li>
+                <li onclick="showDetails('security')">Sécuriser, superviser et optimiser (30-35%)</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="progress">
+            <h2>Suivi de progression</h2>
+        </div>
+
+        <div class="tab-content" id="tasks">
+            <h2>Tâches du jour</h2>
+        </div>
+    </div>
+
+    <div class="details-section" id="details-section">
+        <h2 id="details-title">Détails de la section</h2>
+        <ul id="details-list"></ul>
+        <button onclick="hideDetails()">Retour</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

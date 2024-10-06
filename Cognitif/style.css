@@ -1,0 +1,106 @@
+/* Body and background settings */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('A_vibrant_illustration_representing_cognitive_meth.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; /* Texte en blanc pour contraste sur l'arrière-plan */
+}
+
+/* Overlay for better text readability */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Couche sombre pour lisibilité */
+    padding: 20px;
+    min-height: 100vh; /* Prend toute la hauteur de la page */
+}
+
+h1 {
+    text-align: center;
+    color: #fff; /* Blanc pour le contraste */
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.method-list {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #333; /* Couleur du texte noir pour un bon contraste */
+}
+
+.method {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.method:last-child {
+    border-bottom: none;
+}
+
+.method h2 {
+    color: #2c3e50; /* Bleu foncé pour la concentration et la stabilité */
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.method p {
+    font-size: 1em;
+    color: #34495e; /* Un bleu-gris qui inspire la sérénité et la concentration */
+    line-height: 1.6;
+}
+
+.method a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #5c4db1; /* Violet pour l'intelligence et la créativité */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.method a:hover {
+    text-decoration: underline;
+}
+
+.recent-updates {
+    background-color: rgba(52, 152, 219, 0.9); /* Bleu légèrement transparent */
+    color: white;
+    padding: 15px;
+    margin: 30px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.recent-updates h3 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.recent-updates ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.recent-updates ul li {
+    padding: 5px 0;
+}
+
+.recent-updates ul li span {
+    font-weight: bold;
+}
+
+/* Optimiser pour la lisibilité des liens */
+a {
+    color: #5c4db1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformer des données en utilisant Transact-SQL (T-SQL) dans Azure Synapse Analytics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Transformer des données en utilisant Transact-SQL (T-SQL) dans Azure Synapse Analytics</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Qu'est-ce que Transact-SQL (T-SQL) ?</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-t-sql-1">
+                        Comprendre Transact-SQL (T-SQL)
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Transact-SQL (T-SQL) est une extension du langage SQL standard, utilisée pour interagir avec les bases de données relationnelles dans SQL Server et Azure Synapse Analytics. Il permet d'exécuter des requêtes, de manipuler des données et de gérer des transactions complexes. T-SQL ajoute des fonctionnalités comme les boucles, les conditions (IF, CASE), et les blocs de transactions (BEGIN TRANSACTION, COMMIT).
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-t-sql-2">
+                        Pourquoi utiliser T-SQL dans Azure Synapse Analytics ?
+                    </label>
+                    <p>
+                        T-SQL est essentiel dans Azure Synapse pour effectuer des opérations de manipulation et de transformation de données sur de grands ensembles de données. Il permet de charger, transformer et analyser les données en utilisant un langage bien connu par les professionnels SQL, tout en tirant parti des capacités d'échelle et de performance de Synapse Analytics.
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Fonctionnalités clés de T-SQL</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-t-sql-3">
+                        Requêtes SELECT avancées
+                    </label>
+                    <p>T-SQL permet d'exécuter des requêtes complexes avec des jointures, des sous-requêtes et des agrégations pour extraire des informations pertinentes de grandes tables de données.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-t-sql-4">
+                        Fonctionnalités de manipulation des données (DML)
+                    </label>
+                    <p>Avec T-SQL, vous pouvez insérer, mettre à jour et supprimer des enregistrements dans des tables, ainsi que manipuler des données directement dans la base de données avec les instructions INSERT, UPDATE, DELETE.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-t-sql-5">
+                        Gestion des transactions
+                    </label>
+                    <p>Les blocs transactionnels (BEGIN TRANSACTION, COMMIT, ROLLBACK) vous permettent de gérer les transactions de manière sécurisée pour garantir l'intégrité des données lors de modifications complexes.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="task-section">
+            <h3>Atelier Pratique : Transformer des Données avec Transact-SQL dans Azure Synapse</h3>
+            <p>Dans cet atelier, vous allez manipuler et transformer des données en utilisant des requêtes T-SQL dans Azure Synapse Analytics. Vous allez apprendre à exécuter des transformations complexes sur des tables et des vues, à filtrer des données, et à générer des résultats agrégés pour vos analyses.</p>
+
+            <ul>
+                <!-- Première tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-t-sql-transform-1">
+                        Lire et filtrer des données avec T-SQL
+                    </label>
+                    <p>Utilisez une requête T-SQL pour lire des données d'une table existante dans Azure Synapse et appliquez un filtre pour sélectionner des données spécifiques.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Accédez à votre espace de travail <strong>Azure Synapse</strong> et ouvrez un nouvel éditeur SQL.</li>
+                            <li>Exécutez une requête T-SQL simple pour lire des données depuis une table :
+                                <pre>
+SELECT *
+FROM ventes
+WHERE montant_vente > 500;
+                                </pre>
+                            </li>
+                            <li>Ajoutez d'autres filtres pour raffiner les résultats :
+                                <pre>
+SELECT *
+FROM ventes
+WHERE montant_vente > 500
+AND date_vente > '2023-01-01';
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Deuxième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-t-sql-transform-2">
+                        Appliquer des agrégations et des regroupements
+                    </label>
+                    <p>Utilisez des fonctions d'agrégation comme SUM, COUNT et AVG pour obtenir des statistiques agrégées à partir des données.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Exécutez une requête qui calcule le total des ventes par produit :
+                                <pre>
+SELECT produit_id, SUM(montant_vente) AS total_ventes
+FROM ventes
+GROUP BY produit_id;
+                                </pre>
+                            </li>
+                            <li>Ajoutez une condition pour ne regrouper que les ventes supérieures à un certain seuil :
+                                <pre>
+SELECT produit_id, SUM(montant_vente) AS total_ventes
+FROM ventes
+WHERE montant_vente > 500
+GROUP BY produit_id;
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Troisième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-t-sql-transform-3">
+                        Mettre à jour des enregistrements dans une table
+                    </label>
+                    <p>Modifiez des enregistrements existants dans une table en utilisant l'instruction UPDATE pour corriger ou enrichir les données.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Exécutez une requête pour mettre à jour un champ dans une table :
+                                <pre>
+UPDATE ventes
+SET statut_vente = 'Validée'
+WHERE montant_vente > 1000;
+                                </pre>
+                            </li>
+                            <li>Vérifiez les enregistrements mis à jour en exécutant une requête SELECT sur la table modifiée.</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Quatrième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-t-sql-transform-4">
+                        Utiliser des transactions pour garantir l'intégrité des données
+                    </label>
+                    <p>Utilisez une transaction T-SQL pour vous assurer que toutes les modifications sont appliquées avec succès, ou qu'elles sont annulées en cas d'échec.</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Commencez une transaction :
+                                <pre>
+BEGIN TRANSACTION;
+                                </pre>
+                            </li>
+                            <li>Mettez à jour plusieurs enregistrements dans une table :
+                                <pre>
+UPDATE ventes
+SET montant_vente = montant_vente * 1.1
+WHERE date_vente > '2023-01-01';
+                                </pre>
+                            </li>
+                            <li>Vérifiez les modifications :
+                                <pre>
+SELECT * FROM ventes WHERE date_vente > '2023-01-01';
+                                </pre>
+                            </li>
+                            <li>Si tout semble correct, appliquez les modifications :
+                                <pre>
+COMMIT;
+                                </pre>
+                            </li>
+                            <li>Si vous voulez annuler les changements, exécutez :
+                                <pre>
+ROLLBACK;
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

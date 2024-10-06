@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concevoir et implémenter des chargements de données incrémentiels - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Concevoir et implémenter des chargements de données incrémentiels</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Chargements de Données Incrémentiels</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-incremental-load-1">
+                        Comprendre les chargements de données incrémentiels
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Un chargement incrémentiel consiste à charger uniquement les **données nouvelles ou modifiées** depuis la dernière exécution du pipeline de données, au lieu de charger l'intégralité des données. Ce type de chargement est couramment utilisé pour optimiser les performances, réduire les temps de traitement et minimiser l'utilisation des ressources dans les pipelines ETL (Extract, Transform, Load).
+                    </p>
+                    <p>
+                        Contrairement aux chargements complets qui rechargent toutes les données à chaque exécution, les chargements incrémentiels n'actualisent que les enregistrements modifiés, ce qui permet une plus grande efficacité et un meilleur usage des ressources.
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-incremental-load-2">
+                        Avantages des chargements incrémentiels
+                    </label>
+                    <p>
+                        <strong>Avantages :</strong> Les chargements de données incrémentiels présentent plusieurs avantages importants :
+                        <ul>
+                            <li><strong>Optimisation des performances :</strong> En traitant uniquement les données nouvelles ou mises à jour, le temps d'exécution est considérablement réduit.</li>
+                            <li><strong>Réduction des coûts :</strong> Moins de données à charger signifie une utilisation moindre des ressources de calcul et de stockage, ce qui réduit les coûts.</li>
+                            <li><strong>Amélioration de la scalabilité :</strong> Les chargements incrémentiels permettent de gérer efficacement de très grands ensembles de données en ne traitant que les segments pertinents.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Méthodes de Chargements Incrémentiels</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-incremental-methods-1">
+                        Méthode de gestion des horodatages
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> La méthode des horodatages consiste à utiliser un **horodatage de modification** (timestamp) ou une **date de dernière mise à jour** pour déterminer quels enregistrements ont changé depuis la dernière exécution. Seuls les enregistrements ayant un horodatage plus récent que le dernier chargement sont chargés dans le système cible.
+                    </p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-incremental-methods-2">
+                        Méthode basée sur les indicateurs de changement (Change Data Capture)
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> La **Change Data Capture (CDC)** est une technique qui capture les modifications au niveau de la source de données en identifiant directement les lignes qui ont été modifiées ou ajoutées. Cette approche repose souvent sur des journaux de transaction ou des mécanismes d'indicateur de changement natifs au système de gestion de bases de données.
+                    </p>
+                    <p>
+                        Cette méthode est efficace pour identifier rapidement les changements, mais nécessite souvent une infrastructure spécialisée et des outils compatibles.
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </div>
+        <div class="container">
+            <section class="task-section">
+                <h3>Atelier Pratique : Implémentation d'un Chargement Incrémentiel</h3>
+                <p>Dans cet atelier, vous allez concevoir et mettre en place un pipeline de chargement incrémentiel en utilisant Azure Data Factory. Vous apprendrez à configurer un pipeline qui ne charge que les enregistrements modifiés depuis la dernière exécution.</p>
+        
+                <ul>
+                    <!-- Première tâche -->
+                    <li>
+                        <label>
+                            <input type="checkbox" class="task-check" data-key="task-incremental-load-1">
+                            Configurer un pipeline Azure Data Factory pour les chargements incrémentiels
+                        </label>
+                        <p>Configurez un pipeline Azure Data Factory qui charge uniquement les nouvelles données basées sur une colonne d'horodatage.</p>
+                        <div class="task-steps">
+                            <ul>
+                                <li>Accédez à votre espace de travail <strong>Azure Data Factory</strong>.</li>
+                                <li>Créez une <strong>Source de données</strong> qui pointe vers votre base de données source.</li>
+                                <li>Ajoutez un <strong>paramètre d'horodatage</strong> qui capture la date de la dernière exécution réussie.</li>
+                                <li>Ajoutez une condition dans la <strong>requête de source</strong> pour ne charger que les enregistrements où la colonne d'horodatage est postérieure à ce paramètre. Exemple :
+                                    <pre>
+        SELECT *
+        FROM Ventes
+        WHERE Dernière_Mise_À_Jour > @DernièreExécution
+                                    </pre>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+        
+                    <!-- Deuxième tâche -->
+                    <li>
+                        <label>
+                            <input type="checkbox" class="task-check" data-key="task-incremental-load-2">
+                            Utiliser Change Data Capture (CDC) pour capturer les modifications
+                        </label>
+                        <p>Configurez <strong>Change Data Capture (CDC)</strong> pour capturer les lignes modifiées ou insérées depuis la dernière exécution du pipeline :</p>
+                        <div class="task-steps">
+                            <ul>
+                                <li>Activez CDC dans votre base de données source pour identifier les modifications.</li>
+                                <li>Créez un <strong>pipeline de données</strong> dans Azure Data Factory qui utilise les données capturées par CDC.</li>
+                                <li>Configurez un <strong>actif de destination</strong> qui recevra les modifications.</li>
+                            </ul>
+                        </div>
+                    </li>
+        
+                    <!-- Troisième tâche -->
+                    <li>
+                        <label>
+                            <input type="checkbox" class="task-check" data-key="task-incremental-load-3">
+                            Optimiser les performances des chargements incrémentiels
+                        </label>
+                        <p>Optimisez vos pipelines pour garantir des performances maximales, même lorsque le volume de données croît :</p>
+                        <div class="task-steps">
+                            <ul>
+                                <li>Utilisez des <strong>index</strong> sur les colonnes d'horodatage pour accélérer les recherches des données modifiées.</li>
+                                <li>Automatisez l'archivage des données obsolètes afin de maintenir les performances des tables principales.</li>
+                                <li>Utilisez le <strong>partitionnement</strong> des données pour distribuer efficacement la charge de travail des pipelines.</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    
+</body>
+</html>

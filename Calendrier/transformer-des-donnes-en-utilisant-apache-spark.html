@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformer des données en utilisant Apache Spark</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Transformer des données en utilisant Apache Spark</h1>
+    </header>
+
+    <!-- Barre de progression -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+        <div class="progress-percentage">0%</div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Apache Spark : Présentation</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-transform-1">
+                        Comprendre Apache Spark
+                    </label>
+                    <p>
+                        <strong>Définition :</strong> Apache Spark est un moteur de traitement de données distribué conçu pour effectuer des transformations de données à grande échelle. Il permet d'exécuter des calculs en mémoire, ce qui améliore significativement les performances par rapport aux systèmes qui lisent les données depuis le disque. Spark prend en charge plusieurs langages de programmation (Python, Scala, Java, R) et peut traiter des données sous différents formats (CSV, JSON, Parquet, etc.).
+                    </p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-transform-2">
+                        Avantages d'Apache Spark
+                    </label>
+                    <p>
+                        <strong>Avantages :</strong> Spark présente de nombreux avantages pour le traitement des données :
+                        <ul>
+                            <li><strong>Traitement en mémoire :</strong> Spark stocke les données en RAM pendant l'exécution des opérations, réduisant ainsi le temps de traitement pour les grandes transformations de données.</li>
+                            <li><strong>Scalabilité :</strong> Spark s'étend facilement pour traiter des pétaoctets de données en ajoutant des nœuds à un cluster.</li>
+                            <li><strong>Polyvalence :</strong> Il prend en charge des tâches variées comme le traitement par lot, le streaming en temps réel, et le machine learning.</li>
+                            <li><strong>Compatibilité :</strong> Spark peut être utilisé avec des services de cloud comme Azure Synapse, AWS EMR, et d'autres, facilitant ainsi l'intégration dans les architectures existantes.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+
+            <h3>Cas d'utilisation d'Apache Spark</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-transform-3">
+                        Traitement des données volumineuses (Big Data)
+                    </label>
+                    <p>Spark est utilisé pour traiter des volumes massifs de données non structurées ou semi-structurées, comme des journaux d'événements, des transactions, ou des données de capteurs IoT.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-transform-4">
+                        Traitement de données en temps réel avec Spark Streaming
+                    </label>
+                    <p>Spark Streaming permet de traiter en continu des flux de données en temps réel, souvent utilisé pour des analyses de journaux ou de capteurs en direct.</p>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-spark-transform-5">
+                        Machine Learning avec Spark MLlib
+                    </label>
+                    <p>Apache Spark inclut une bibliothèque appelée **MLlib** qui permet d'exécuter des algorithmes de machine learning à grande échelle sur des ensembles de données massifs.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="task-section">
+            <h3>Atelier Pratique : Transformer des Données avec Apache Spark</h3>
+            <p>Dans cet atelier, vous allez utiliser Apache Spark pour lire, transformer et écrire des données dans un environnement distribué. Vous allez exécuter un exemple de transformation de données sur un fichier CSV, puis utiliser Spark pour des analyses plus complexes.</p>
+
+            <ul>
+                <!-- Première tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-spark-transform-1">
+                        Lire un fichier CSV avec Spark
+                    </label>
+                    <p>
+                        Utilisez Spark pour lire un fichier CSV à partir d'Azure Data Lake. Vous allez d'abord créer un DataFrame à partir des données CSV.
+                        <div class="task-steps">
+                            <ul>
+                                <li>Accédez à votre espace de travail <strong>Azure Synapse</strong>.</li>
+                                <li>Créez un notebook Spark.</li>
+                                <li>Utilisez le code suivant pour lire le fichier CSV dans un DataFrame Spark :
+                                    <pre>
+df = spark.read.format("csv").option("header", "true").load("abfss://mon-datalake@moncompte.dfs.core.windows.net/fichiers/donnees.csv")
+df.show()
+                                    </pre>
+                                </li>
+                            </ul>
+                        </div>
+                    </p>
+                </li>
+
+                <!-- Deuxième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-spark-transform-2">
+                        Appliquer des transformations sur les données
+                    </label>
+                    <p>Appliquez des transformations comme le filtrage, l'agrégation et l'ajout de colonnes dérivées. Vous allez transformer les données brutes en les enrichissant ou en les nettoyant :</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Filtrez les données pour ne garder que les lignes avec des valeurs spécifiques :
+                                <pre>
+df_filtered = df.filter(df["montant_vente"] > 100)
+df_filtered.show()
+                                </pre>
+                            </li>
+                            <li>Ajoutez une nouvelle colonne calculée à partir des données existantes :
+                                <pre>
+from pyspark.sql.functions import col
+df_transformed = df_filtered.withColumn("montant_tva", col("montant_vente") * 0.2)
+df_transformed.show()
+                                </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Troisième tâche -->
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="task-spark-transform-3">
+                        Enregistrer les résultats dans un fichier Parquet
+                    </label>
+                    <p>Enregistrez les données transformées dans un format optimisé comme Parquet pour un usage ultérieur ou une analyse plus rapide :</p>
+                    <div class="task-steps">
+                        <ul>
+                            <li>Utilisez le code suivant pour écrire les données dans un fichier Parquet :
+                                <pre>
+df_transformed.write.format("parquet").save("abfss://mon-datalake@moncompte.dfs.core.windows.net/fichiers/resultats_transformes.parquet")
+                                </pre>
+                            </li>
+                            <li>Vérifiez que les données ont bien été écrites dans le Data Lake.</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

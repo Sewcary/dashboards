@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifier quand le partitionnement est nécessaire dans Azure Data Lake Storage Gen2 - DP-203</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="checklist.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #333;
+        }
+
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-link:hover {
+            background-color: #357abd;
+        }
+
+        .workshop-section {
+            margin-top: 40px;
+        }
+
+        .workshop-section h4 {
+            margin-bottom: 10px;
+            color: #4a90e2;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        .time-required {
+            font-size: 0.9em;
+            color: #777;
+            font-style: italic;
+        }
+
+        .task-checklist {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Identifier quand le partitionnement est nécessaire dans Azure Data Lake Storage Gen2</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Aspects Conceptuels</h2>
+            <h3>Principes de Partitionnement dans Azure Data Lake Storage Gen2</h3>
+            <p>
+                Le partitionnement dans Azure Data Lake Storage Gen2 permet d'organiser de grandes quantités de données en plusieurs segments pour faciliter la gestion, optimiser les performances des requêtes et améliorer la scalabilité. Identifier quand partitionner les données est essentiel pour maximiser l'efficacité du système.
+            </p>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adls-1">
+                        Comprendre quand et pourquoi partitionner des données dans Azure Data Lake Storage Gen2
+                    </label>
+                    <p>Le partitionnement est nécessaire lorsque les ensembles de données deviennent très volumineux, ou lorsqu'ils doivent être interrogés rapidement. Cela permet de segmenter les données en unités gérables et de réduire la charge de traitement lors des requêtes.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="concept-adls-2">
+                        Connaître les différentes approches de partitionnement dans un Data Lake (temporel, par clé)
+                    </label>
+                    <p>Dans Azure Data Lake Storage Gen2, les approches typiques incluent le partitionnement temporel (par exemple, par année, mois, jour) ou basé sur des clés comme les régions géographiques ou les identifiants de clients.</p>
+                </li>
+            </ul>
+
+            <h3>Avantages et Limites du Partitionnement dans un Data Lake</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="avantage-adls-1">
+                        Évaluer les bénéfices du partitionnement pour les performances et la gestion des données
+                    </label>
+                    <p>Le partitionnement permet de réduire les temps de traitement des requêtes, facilite l'archivage des données et permet de charger et interroger uniquement les partitions pertinentes au lieu de scanner l'intégralité du Data Lake.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="avantage-adls-2">
+                        Identifier les risques et les limitations d'un mauvais partitionnement
+                    </label>
+                    <p>Un mauvais partitionnement peut entraîner des partitions surchargées ou inutilisées, créant des déséquilibres dans le système. De plus, des partitions trop petites peuvent augmenter le nombre de requêtes nécessaires et donc la charge.</p>
+                </li>
+            </ul>
+
+            <h3>Modèles de Données et Partitionnement dans Azure Data Lake</h3>
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="model-donnees-adls-1">
+                        Adapter les modèles de données pour maximiser les avantages du partitionnement
+                    </label>
+                    <p>Le modèle de données doit être pensé pour utiliser efficacement les partitions, en tenant compte des types de requêtes, de l'organisation temporelle ou par clé, et des besoins spécifiques en termes de gestion des données.</p>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="concept-check" data-key="model-donnees-adls-2">
+                        Optimiser les performances des requêtes et des pipelines de données dans Azure Data Lake
+                    </label>
+                    <p>Les requêtes doivent être optimisées pour ne cibler que les partitions nécessaires. Cela permet d'améliorer les temps de réponse et de minimiser la charge de traitement des requêtes dans un Data Lake très volumineux.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="workshop-section">
+            <h2>Ateliers Pratiques</h2>
+            <p>Les ateliers pratiques suivants vous permettront de maîtriser le partitionnement et son utilisation efficace dans Azure Data Lake Storage Gen2.</p>
+
+            <h4>Atelier 1 : Créer des partitions dans Azure Data Lake Storage Gen2</h4>
+            <p>
+                <strong>Objectif :</strong> Créer des partitions dans Azure Data Lake en utilisant une stratégie basée sur des critères temporels ou des clés.<br>
+                <span class="time-required">Temps estimé : 2 heures</span>
+            </p>
+            <ol>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier1-adls-step1">
+                        Créez des dossiers pour des partitions temporelles dans Azure Data Lake.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier1-adls-step2">
+                        Chargez des données dans les partitions basées sur les dossiers temporels.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier1-adls-step3">
+                        Utilisez des outils comme Azure Data Factory pour lire les partitions et analyser les performances.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier1-adls-step4">
+                        Comparez les temps de traitement avec et sans partitionnement.
+                    </label>
+                </li>
+            </ol>
+
+            <h4>Atelier 2 : Optimiser la gestion des partitions dans Azure Data Lake</h4>
+            <p>
+                <strong>Objectif :</strong> Apprendre à gérer les partitions de manière dynamique en fonction de la croissance des données.<br>
+                <span class="time-required">Temps estimé : 2 heures 30 minutes</span>
+            </p>
+            <ol>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier2-adls-step1">
+                        Configurez un pipeline Azure Data Factory pour partitionner automatiquement les données lors du chargement.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier2-adls-step2">
+                        Testez le pipeline avec différents jeux de données et surveillez les performances.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier2-adls-step3">
+                        Ajustez les partitions en fonction de la taille des données et des performances observées.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier2-adls-step4">
+                        Optimisez les coûts de stockage en archivant ou supprimant des partitions inutilisées.
+                    </label>
+                </li>
+            </ol>
+
+            <h4>Atelier 3 : Monitorer et optimiser les partitions dans Azure Data Lake</h4>
+            <p>
+                <strong>Objectif :</strong> Utiliser les outils de surveillance pour suivre les performances et l'utilisation des partitions dans Azure Data Lake.<br>
+                <span class="time-required">Temps estimé : 1 heure 30 minutes</span>
+            </p>
+            <ol>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier3-adls-step1">
+                        Configurez Azure Monitor pour surveiller l'activité des partitions dans le Data Lake.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier3-adls-step2">
+                        Analysez les métriques de performance des partitions et identifiez les goulots d'étranglement.
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" class="task-check" data-key="atelier3-adls-step3">
+                        Ajustez la stratégie de partitionnement pour améliorer les performances.
+                    </label>
+                </li>
+            </ol>
+        </section>
+
+        <a href="index.html" class="back-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>
