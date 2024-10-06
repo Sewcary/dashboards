@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gérer ses fichiers avec GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="github_pacer.html">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Gérer ses fichiers avec GitHub - Méthode PACER</h1>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress" style="width: 20%;"></div>
+        </div>
+
+        <!-- PACER Method Integration -->
+        <section>
+            <h2>P - Procédural : Instructions pour GitHub</h2>
+            <label><input type="checkbox"> Créer un dépôt GitHub</label>
+            <p>- Si tu n’as pas encore de compte, crée-en un sur <a href="https://github.com" target="_blank">GitHub</a>.</p>
+            <p>- Crée un nouveau dépôt dans GitHub, qui servira de stockage pour ton projet. Tu peux choisir de le rendre <strong>privé</strong> ou <strong>public</strong> selon tes besoins.</p>
+
+            <label><input type="checkbox"> Initialiser Git en local</label>
+            <p>Sur ton ordinateur, navigue vers le répertoire que tu souhaites synchroniser avec GitHub. Ouvre un terminal et exécute les commandes suivantes :</p>
+            <pre><code>git init</code></pre>
+            <pre><code>git remote add origin https://github.com/votre-nom-utilisateur/nom-du-depot.git</code></pre>
+
+            <label><input type="checkbox"> Ajouter et envoyer des fichiers</label>
+            <p>Ajoute tes fichiers au dépôt Git avec ces commandes :</p>
+            <pre><code>git add .</code></pre>
+            <pre><code>git commit -m "Premier commit"</code></pre>
+            <pre><code>git push origin master</code></pre>
+        </section>
+
+        <section>
+            <h2>A - Analogous : Comparaison avec d'autres systèmes</h2>
+            <label><input type="checkbox"> Comparaison avec d'autres outils</label>
+            <p>GitHub offre des avantages comparables à Dropbox ou Google Drive, mais se distingue par la gestion des versions et la collaboration en temps réel.</p>
+        </section>
+
+        <section>
+            <h2>C - Conceptuel : Comprendre la gestion des versions</h2>
+            <label><input type="checkbox"> Gestion des branches et commits</label>
+            <p>Les branches permettent de travailler sur plusieurs versions d’un projet. Les commits enregistrent chaque modification. GitHub facilite la collaboration en fusionnant les branches.</p>
+        </section>
+
+        <section>
+            <h2>E - Evidence : Preuves de l'efficacité</h2>
+            <label><input type="checkbox"> Pourquoi utiliser GitHub ?</label>
+            <p>Selon une enquête menée par Stack Overflow, 80 % des développeurs utilisent GitHub pour la gestion de projets collaboratifs, prouvant son efficacité.</p>
+        </section>
+
+        <section>
+            <h2>R - Référence : Commandes Git essentielles</h2>
+            <label><input type="checkbox"> Commandes à mémoriser</label>
+            <ul>
+                <li><strong>Ajouter des fichiers</strong> : <pre><code>git add .</code></pre></li>
+                <li><strong>Valider les modifications</strong> : <pre><code>git commit -m "Message de commit"</code></pre></li>
+                <li><strong>Envoyer les changements</strong> : <pre><code>git push origin master</code></pre></li>
+                <li><strong>Récupérer les dernières modifications</strong> : <pre><code>git pull</code></pre></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Choses à savoir faire</p>
+    </footer>
+</body>
+</html>

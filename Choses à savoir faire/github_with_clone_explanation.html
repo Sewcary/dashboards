@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gérer ses fichiers avec GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="github_pacer.html">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Gérer ses fichiers avec GitHub - Méthode PACER</h1>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress" style="width: 20%;"></div>
+        </div>
+
+        <!-- PACER Method Integration with cognitive principles -->
+        <section>
+            <h2><strong>P - Procédural : Instructions pour GitHub</strong></h2>
+            <ul>
+                <li><label><input type="checkbox"> Créer un dépôt GitHub</label></li>
+                <p>- Si tu n’as pas encore de compte, crée-en un sur <a href="https://github.com" target="_blank">GitHub</a>.</p>
+                <p>- Crée un nouveau dépôt dans GitHub, qui servira de stockage pour ton projet. Choisis de le rendre <strong>privé</strong> ou <strong>public</strong> selon tes besoins.</p>
+
+                <li><label><input type="checkbox"> Initialiser Git en local</label></li>
+                <p>Sur ton ordinateur, navigue vers le répertoire que tu souhaites synchroniser avec GitHub. Ouvre un terminal et exécute les commandes suivantes :</p>
+                <pre><code>git init</code></pre>
+                <pre><code>git remote add origin https://github.com/votre-nom-utilisateur/nom-du-depot.git</code></pre>
+
+                <li><label><input type="checkbox"> Ajouter et envoyer des fichiers</label></li>
+                <p>Ajoute tes fichiers au dépôt Git avec ces commandes :</p>
+                <pre><code>git add .</code></pre>
+                <pre><code>git commit -m "Premier commit"</code></pre>
+                <pre><code>git push origin master</code></pre>
+            </ul>
+        </section>
+
+        <!-- Section for missing files troubleshooting -->
+        <section>
+            <h2>Résolution des fichiers manquants sur GitHub</h2>
+            <p><strong>Très bien, résolvons ensemble cette chaîne de pensée pour comprendre pourquoi tu ne vois que le fichier README.md dans ton dépôt GitHub.</strong></p>
+
+            <h3>1. Vérification de l'initialisation du projet Git</h3>
+            <p>Il semble que le dépôt a été bien initialisé avec <code>git init</code>, car tu vois le fichier README.md sur GitHub. Cependant, il serait utile de vérifier s'il y a d'autres fichiers dans ton répertoire local qui n'ont pas été ajoutés ou commis.</p>
+
+            <h3>2. Ajout et validation des autres fichiers</h3>
+            <p>Si tu n'as ajouté que le fichier README.md, les autres fichiers ne seront pas visibles dans ton dépôt GitHub. Pour confirmer cela, exécute <code>git status</code> dans ton terminal pour voir s'il y a d'autres fichiers non suivis (<em>untracked files</em>) ou modifiés dans ton répertoire.</p>
+
+            <h3>3. Ajout des fichiers manquants</h3>
+            <p>Si tu vois des fichiers non suivis ou modifiés, utilise <code>git add .</code> pour ajouter tous les fichiers, puis fais un nouveau commit avec <code>git commit -m "Ajout des fichiers manquants"</code>.</p>
+
+            <h3>4. Pousser les nouveaux commits vers GitHub</h3>
+            <p>Après avoir ajouté et validé les fichiers manquants, pousse-les vers ton dépôt GitHub avec <code>git push origin main</code>.</p>
+
+            <p><strong>Essaie ces étapes et dis-moi si tu vois les autres fichiers après avoir effectué ces actions.</strong></p>
+        </section>
+
+        <!-- New section: Cloning the repository on a target PC -->
+        <section>
+            <h2>Cloner le dépôt sur un autre PC</h2>
+            <p><strong>Pour cloner ton dépôt GitHub sur un autre PC, voici les étapes à suivre :</strong></p>
+
+            <h3>1. Ouvrir un terminal ou invite de commandes</h3>
+            <p>Sur le PC cible, ouvre un terminal (ou l'invite de commandes sur Windows) pour exécuter les commandes Git.</p>
+
+            <h3>2. Cloner le dépôt</h3>
+            <p>Exécute la commande suivante en remplaçant <code>votre-nom-utilisateur</code> et <code>nom-du-depot</code> par ton nom d'utilisateur et le nom de ton dépôt :</p>
+            <pre><code>git clone https://github.com/votre-nom-utilisateur/nom-du-depot.git</code></pre>
+            <p>Cette commande va créer un répertoire local sur le PC cible avec tous les fichiers du dépôt GitHub.</p>
+
+            <h3>3. Naviguer dans le répertoire cloné</h3>
+            <p>Une fois le clonage terminé, tu peux te déplacer dans le répertoire nouvellement créé en utilisant la commande suivante :</p>
+            <pre><code>cd nom-du-depot</code></pre>
+
+            <h3>4. Synchronisation future</h3>
+            <p>Pour récupérer les nouvelles modifications du dépôt à l'avenir, tu peux utiliser la commande <code>git pull</code> :</p>
+            <pre><code>git pull origin main</code></pre>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Choses à savoir faire</p>
+    </footer>
+</body>
+</html>

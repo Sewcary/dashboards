@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gérer ses fichiers avec GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="github_pacer.html">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Gérer ses fichiers avec GitHub - Méthode PACER</h1>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress" style="width: 20%;"></div>
+        </div>
+
+        <!-- PACER Method Integration with cognitive principles -->
+        <section>
+            <h2><strong>P - Procédural : Instructions pour GitHub</strong></h2>
+            <ul>
+                <li><label><input type="checkbox"> Créer un dépôt GitHub</label></li>
+                <p>- Si tu n’as pas encore de compte, crée-en un sur <a href="https://github.com" target="_blank">GitHub</a>.</p>
+                <p>- Crée un nouveau dépôt dans GitHub, qui servira de stockage pour ton projet. Choisis de le rendre <strong>privé</strong> ou <strong>public</strong> selon tes besoins.</p>
+
+                <li><label><input type="checkbox"> Initialiser Git en local</label></li>
+                <p>Sur ton ordinateur, navigue vers le répertoire que tu souhaites synchroniser avec GitHub. Ouvre un terminal et exécute les commandes suivantes :</p>
+                <pre><code>git init</code></pre>
+                <pre><code>git remote add origin https://github.com/votre-nom-utilisateur/nom-du-depot.git</code></pre>
+
+                <li><label><input type="checkbox"> Ajouter et envoyer des fichiers</label></li>
+                <p>Ajoute tes fichiers au dépôt Git avec ces commandes :</p>
+                <pre><code>git add .</code></pre>
+                <pre><code>git commit -m "Premier commit"</code></pre>
+                <pre><code>git push origin master</code></pre>
+
+                <!-- Explanation of Git flags -->
+                <h3>Explication des options de commande :</h3>
+                <ul>
+                    <li><strong>-m</strong> dans <code>git commit -m</code> : Permet d'ajouter un message de commit directement via la ligne de commande.</li>
+                    <li><strong>-u</strong> dans <code>git push -u</code> : Définit la branche par défaut pour les futurs push. Cela simplifie l'utilisation des prochaines commandes git push.</li>
+                    <li><strong>git add .</strong> : Ajoute tous les fichiers modifiés dans le répertoire courant pour le prochain commit.</li>
+                </ul>
+            </ul>
+        </section>
+
+        <section>
+            <h2><strong>A - Analogous : Comparaison avec d'autres systèmes</strong></h2>
+            <p>GitHub est comparable à Dropbox ou Google Drive, mais se distingue par sa <strong>gestion des versions</strong> et sa <strong>collaboration en temps réel</strong>.</p>
+        </section>
+
+        <section>
+            <h2><strong>C - Conceptuel : Comprendre la gestion des versions</strong></h2>
+            <p>Les <strong>branches</strong> permettent de travailler sur plusieurs versions d’un projet. Les <strong>commits</strong> enregistrent chaque modification, et GitHub facilite la <strong>collaboration</strong> en fusionnant les branches.</p>
+        </section>
+
+        <section>
+            <h2><strong>E - Evidence : Preuves de l'efficacité</strong></h2>
+            <p>Selon une enquête de Stack Overflow, <strong>80 % des développeurs</strong> utilisent GitHub pour la gestion de projets collaboratifs, ce qui prouve son efficacité.</p>
+        </section>
+
+        <section>
+            <h2><strong>R - Référence : Commandes Git essentielles</strong></h2>
+            <p><strong>Commandes à mémoriser</strong> :</p>
+            <ul>
+                <li><strong>Ajouter des fichiers</strong> : <pre><code>git add .</code></pre></li>
+                <li><strong>Valider les modifications</strong> : <pre><code>git commit -m "Message de commit"</code></pre></li>
+                <li><strong>Envoyer les changements</strong> : <pre><code>git push origin master</code></pre></li>
+                <li><strong>Récupérer les dernières modifications</strong> : <pre><code>git pull</code></pre></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Choses à savoir faire</p>
+    </footer>
+</body>
+</html>

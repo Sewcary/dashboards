@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gérer ses fichiers avec GitHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="github.html">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Gérer ses fichiers avec GitHub</h1>
+
+        <section>
+            <h2>1. Créer un dépôt GitHub</h2>
+            <p>- Si tu n’as pas encore de compte, crée-en un sur <a href="https://github.com" target="_blank">GitHub</a>.</p>
+            <p>- Crée un nouveau dépôt dans GitHub qui servira de stockage pour ton projet. Tu peux choisir de le rendre <strong>privé</strong> ou <strong>public</strong> selon tes besoins.</p>
+        </section>
+
+        <section>
+            <h2>2. Initialiser Git en local</h2>
+            <p>Sur ton ordinateur, navigue vers le répertoire que tu souhaites synchroniser avec GitHub. Ouvre un terminal ou invite de commandes et exécute les commandes suivantes :</p>
+            <pre><code>git init</code></pre>
+            <pre><code>git remote add origin https://github.com/votre-nom-utilisateur/nom-du-depot.git</code></pre>
+        </section>
+
+        <section>
+            <h2>3. Ajouter et envoyer des fichiers</h2>
+            <p>Ajoute tes fichiers au dépôt Git avec ces commandes :</p>
+            <pre><code>git add .</code></pre>
+            <pre><code>git commit -m "Premier commit"</code></pre>
+            <pre><code>git push origin master</code></pre>
+            <p>Tous les fichiers de ton répertoire local seront envoyés à GitHub.</p>
+        </section>
+
+        <section>
+            <h2>4. Synchronisation sur un autre PC</h2>
+            <p>Sur un autre ordinateur, tu peux cloner le dépôt GitHub pour récupérer tous les fichiers :</p>
+            <pre><code>git clone https://github.com/votre-nom-utilisateur/nom-du-depot.git</code></pre>
+            <p>Cela créera un répertoire local avec tous tes fichiers sur cet appareil.</p>
+        </section>
+
+        <section>
+            <h2>5. Modification et mise à jour</h2>
+            <p>Lorsque tu modifies un fichier, tu peux utiliser les commandes suivantes pour ajouter et envoyer les changements sur GitHub :</p>
+            <pre><code>git add .</code></pre>
+            <pre><code>git commit -m "Description des modifications"</code></pre>
+            <pre><code>git push origin master</code></pre>
+            <p>Sur un autre ordinateur, utilise la commande suivante pour récupérer les dernières modifications effectuées :</p>
+            <pre><code>git pull</code></pre>
+        </section>
+
+        <section>
+            <h2>6. Gestion des versions</h2>
+            <p>GitHub permet également de gérer plusieurs versions d'un même fichier en utilisant des branches et en fusionnant les modifications. C’est une excellente option si plusieurs personnes travaillent sur le même projet.</p>
+        </section>
+
+        <section>
+            <h2>7. Accès hors ligne</h2>
+            <p>Les fichiers sont stockés localement et accessibles même hors ligne. Une fois que tu as une connexion Internet, tu peux synchroniser tes modifications avec GitHub en utilisant la commande suivante :</p>
+            <pre><code>git push</code></pre>
+        </section>
+
+        <section>
+            <h2>8. Sécurité et confidentialité</h2>
+            <p>Si tu veux garder le contrôle total sur qui peut accéder à tes fichiers, tu peux définir ton dépôt comme <strong>privé</strong>. Pour éviter de partager des informations sensibles (comme des mots de passe), ajoute un fichier <code>.gitignore</code> pour exclure certains fichiers de la synchronisation.</p>
+        </section>
+
+        <section>
+            <h2>Résumé des commandes Git de base :</h2>
+            <ul>
+                <li><strong>Ajouter des fichiers</strong> : <pre><code>git add .</code></pre></li>
+                <li><strong>Valider les modifications</strong> : <pre><code>git commit -m "Message de commit"</code></pre></li>
+                <li><strong>Envoyer les changements à GitHub</strong> : <pre><code>git push origin master</code></pre></li>
+                <li><strong>Récupérer les dernières modifications</strong> : <pre><code>git pull</code></pre></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Choses à savoir faire</p>
+    </footer>
+</body>
+</html>
